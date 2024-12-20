@@ -26,30 +26,6 @@ const { user, logout } = useAuth();
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <NuxtLink :to="{ name: 'users' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'users' }">
-                                <LucideUsers :size="20" />
-                            </NuxtLink>
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                            {{ t("users") }}
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger>
-                            <NuxtLink :to="{ name: 'admin-attendance' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'admin-attendance' }">
-                                <LucideUserCheck :size="20" />
-                            </NuxtLink>
-                        </TooltipTrigger>
-                        <TooltipContent side="right">
-                            {{ t("attendance") }}
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
             </div>
         </div>
         <div class="h-full flex flex-col w-[calc(100%-3.1rem)] overflow-auto">
