@@ -5,6 +5,13 @@ export default function ru(key: keyof ITranslation) {
         home: "Домашняя страница",
         users: "Сотрудники",
         attendance: "Посещаемость",
+        etiquette: "Этикет",
+
+        allBranches: "Все филиалы",
+        allDepartments: "Все разделы",
+
+        selectBranch: "Выберите филиал",
+        selectDepartment: "Выберите раздел",
 
         add: "Добавлять",
         save: "Сохранять",

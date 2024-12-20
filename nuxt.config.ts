@@ -12,4 +12,16 @@ export default defineNuxtConfig({
         classSuffix: "",
         classPrefix: "",
     },
+
+    runtimeConfig: {
+        public: {
+            // Development
+            // base: "http://localhost:8000",
+            // api: "http://localhost:8000/api/v1",
+
+            // Production
+            base: "http://kpi.pythonanywhere.com",
+            api: "http://kpi.pythonanywhere.com/api/v1",
+        }
+    }
 });

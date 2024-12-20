@@ -6,13 +6,14 @@ export default function useLang() {
         maxAge: 604800, // 1 week
         path: "/",
         default: () => "uz",
+        sameSite: "lax",
     });
 
     const lang = computed(() => {
         return langCookie.value;
     });
 
-    const $t = computed(() => {
+    const t = computed(() => {
         return (key: keyof ITranslation) => {
             return translate(lang.value, key);
         }
@@ -24,7 +25,7 @@ export default function useLang() {
 
     return {
         lang,
-        $t,
+        t,
         changeLang,
     }
 }

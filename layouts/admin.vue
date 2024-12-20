@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
+import { LucideBriefcaseBusiness, LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
 import apify from '~/composables/useAPI';
 
 const { t, changeLang } = useLang();
@@ -17,7 +17,7 @@ const { user, logout } = useAuth();
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <NuxtLink :to="{ name: 'index' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'index' }">
+                            <NuxtLink :to="{ name: 'admin' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'admin' }">
                                 <LucideLayoutGrid :size="20" />
                             </NuxtLink>
                         </TooltipTrigger>
@@ -29,7 +29,7 @@ const { user, logout } = useAuth();
                 <TooltipProvider>
                     <Tooltip>
                         <TooltipTrigger>
-                            <NuxtLink :to="{ name: 'users' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'users' }">
+                            <NuxtLink :to="{ name: 'admin-users' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name?.toString().includes('users') }">
                                 <LucideUsers :size="20" />
                             </NuxtLink>
                         </TooltipTrigger>
@@ -50,15 +50,27 @@ const { user, logout } = useAuth();
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <NuxtLink :to="{ name: 'admin-etiquette' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'admin-etiquette' }">
+                                <LucideBriefcaseBusiness :size="20" />
+                            </NuxtLink>
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                            {{ t("attendance") }}
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
             </div>
         </div>
         <div class="h-full flex flex-col w-[calc(100%-3.1rem)] overflow-auto">
             <div class="h-[3rem] border-b bg-accent/30 flex items-center justify-between p-5">
-                <div>
+                <div class="">
                     <p>Davlat ekologik ekspertizasi markazi</p>
-                    <p class="text-xs">{{ user?.full_name }}</p>
+                    <p class="text-xs font-bold">Admin</p>
                 </div>
-                    <DropdownMenu>
+                <DropdownMenu>
                     <DropdownMenuTrigger>
                         <LucideUser />
                     </DropdownMenuTrigger>
@@ -70,17 +82,6 @@ const { user, logout } = useAuth();
                                 <LucideUser v-else :size="16" />
                             </div>
                             <span class="truncate">{{ user?.full_name }}</span>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <LucideGitBranch :size="16" />
-                            {{ user?.branch ? user.branch : 'Tizim' }}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <LucideLandmark :size="16" />
-                            {{ user?.department ? user.department : 'Admin' }}</DropdownMenuItem>
-                        <DropdownMenuItem>
-                            <LucideLayers2 :size="16" />
-                            {{ user?.position ? user.position : 'Admin' }}
                         </DropdownMenuItem>
                         <DropdownMenuSeparator />
                         <DropdownMenuLabel>{{ t('theme') }}</DropdownMenuLabel>

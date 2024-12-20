@@ -5,6 +5,13 @@ export default function en(key: keyof ITranslation) {
         home: "Home",
         users: "Employees",
         attendance: "Attendance",
+        etiquette: "Etiquette",
+        
+        allBranches: "All branches",
+        allDepartments: "All department",
+
+        selectBranch: "Select branch",
+        selectDepartment: "Select department",
         
         add: "Add",
         save: "Save",
