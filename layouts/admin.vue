@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LucideBriefcaseBusiness, LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
+import { LucideBriefcaseBusiness, LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideListTodo, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
 import apify from '~/composables/useAPI';
 
 const { t, changeLang } = useLang();
@@ -55,6 +55,18 @@ const { user, logout } = useAuth();
                         <TooltipTrigger>
                             <NuxtLink :to="{ name: 'admin-etiquette' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'admin-etiquette' }">
                                 <LucideBriefcaseBusiness :size="20" />
+                            </NuxtLink>
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                            {{ t("attendance") }}
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <NuxtLink :to="{ name: 'admin-tasks' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'admin-tasks' }">
+                                <LucideListTodo :size="20" />
                             </NuxtLink>
                         </TooltipTrigger>
                         <TooltipContent side="right">

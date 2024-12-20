@@ -4,6 +4,7 @@ import { branches, departments, type IResponse, type IUser } from '~/types';
 
 definePageMeta({
     layout: "admin",
+    middleware: ["is-auth", "is-admin"],
 });
 
 const { t } = useLang();

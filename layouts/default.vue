@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
+import { LucideGitBranch, LucideLandmark, LucideLayers2, LucideLayoutGrid, LucideListTodo, LucideLogOut, LucideMoon, LucideSprout, LucideSun, LucideUser, LucideUserCheck, LucideUsers } from 'lucide-vue-next';
 import apify from '~/composables/useAPI';
 
 const { t, changeLang } = useLang();
@@ -23,6 +23,18 @@ const { user, logout } = useAuth();
                         </TooltipTrigger>
                         <TooltipContent side="right">
                             {{ t("home") }}
+                        </TooltipContent>
+                    </Tooltip>
+                </TooltipProvider>
+                <TooltipProvider>
+                    <Tooltip>
+                        <TooltipTrigger>
+                            <NuxtLink :to="{ name: 'tasks' }" class="flex rounded-md hover:bg-green-500/10 hover:text-green-500 p-2" :class="{ 'bg-green-500/10 text-green-500': $route.name === 'tasks' }">
+                                <LucideListTodo :size="20" />
+                            </NuxtLink>
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                            {{ t("tasks") }}
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

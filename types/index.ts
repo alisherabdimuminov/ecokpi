@@ -41,6 +41,13 @@ export interface IEtiquettes {
     [month: string]: IEtiquette[]
 }
 
+export interface ITask {
+    uuid: string
+    name: string
+    point: number
+    term: "regular" | "monthly" | "quarter" | "annual"
+}
+
 export interface IResponse<T=string> {
     status: "success" | "error"
     code: string

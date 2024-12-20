@@ -9,6 +9,7 @@ import { branches, departments, type IAttendance, type IAttendances, type IRespo
 
 definePageMeta({
     layout: 'admin',
+    middleware: ["is-auth", "is-admin"],
 });
 
 

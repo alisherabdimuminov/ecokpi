@@ -4,8 +4,14 @@ export default function ru(key: keyof ITranslation) {
     const translations: ITranslation = {
         home: "Домашняя страница",
         users: "Сотрудники",
+        attendances: "Посещаемость",
+        etiquettes: "Этикет",
+        tasks: "Задачи",
+
+        user: "Пользователь",
         attendance: "Посещаемость",
         etiquette: "Этикет",
+        task: "Задача",
 
         allBranches: "Все филиалы",
         allDepartments: "Все разделы",
@@ -15,6 +21,9 @@ export default function ru(key: keyof ITranslation) {
 
         add: "Добавлять",
         save: "Сохранять",
+        new: "Новый",
+        addNewTask: "Добавить новую задачу",
+        close: "Закрытие",
 
         theme: "Тема",
         light: "Яркий",
