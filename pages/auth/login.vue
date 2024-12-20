@@ -70,7 +70,7 @@ const loginHandler = async () => {
 
 
 <template>
-    <div class="w-full md:w-1/2 px-5 flex flex-col gap-3">
+    <div class="w-full px-5 flex flex-col gap-3">
         <p class="text-center font-bold">KPI tizimiga kirish</p>
         <div>
             <Label>Foydalanuvchi nomi</Label>

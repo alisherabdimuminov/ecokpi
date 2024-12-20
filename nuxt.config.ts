@@ -20,8 +20,8 @@ export default defineNuxtConfig({
             // api: "http://localhost:8000/api/v1",
 
             // Production
-            base: "http://kpi.pythonanywhere.com",
-            api: "http://kpi.pythonanywhere.com/api/v1",
+            base: "https://kpi.pythonanywhere.com",
+            api: "https://kpi.pythonanywhere.com/api/v1",
         }
     }
 });
