@@ -24,6 +24,7 @@ export default function uz(key: keyof ITranslation) {
         new: "Yangi",
         addNewTask: "Yangi vazifa qo'shish",
         close: "Yopish",
+        delete: "O'chirish",
 
         theme: "Mavzu",
         light: "Yorug'",

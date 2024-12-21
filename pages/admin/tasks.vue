@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { toast } from '~/components/ui/toast';
 import apify from '~/composables/useAPI';
-import type { IResponse, ITask } from '~/types';
+import { positions, type IResponse, type ITask } from '~/types';
 
 
 
@@ -15,6 +15,7 @@ const { t } = useLang();
 const tasks = ref<ITask[]>([]);
 const task = ref<ITask>({
     name: "",
+    position: "",
     point: 20,
     term: "regular",
     uuid: "",
@@ -42,6 +43,7 @@ const addTask = async () => {
         method: "POST",
         body: JSON.stringify({
             "name": task.value.name,
+            "position": task.value.position,
             "point": task.value.point,
             "term": task.value.term,
         })
@@ -116,12 +118,21 @@ onMounted(() => {
                         <DialogTrigger>
                             <Button>{{ t("add") }}</Button>
                         </DialogTrigger>
-                        <DialogContent>
+                        <DialogContent class="h-96">
                             <DialogHeader>
                                 <DialogTitle>{{ t("addNewTask") }}</DialogTitle>
                                 <DialogDescription></DialogDescription>
                             </DialogHeader>
                             <div>
+                                <Label>Lavozimi</Label>
+                                <Select v-model="task.position">
+                                    <SelectTrigger>
+                                        <SelectValue placeholder="Lavozimni tanlang" />
+                                    </SelectTrigger>
+                                    <SelectContent>
+                                        <SelectItem v-for="position in positions" :key="position" :value="position">{{ position }}</SelectItem>
+                                    </SelectContent>
+                                </Select>
                                 <Label>Nomi</Label>
                                 <Input v-model="task.name" />
                                 <NumberField :default-value="20" v-model:model-value="task.point">
@@ -162,6 +173,7 @@ onMounted(() => {
                 <TableHeader>
                     <TableHead>#</TableHead>
                     <TableHead>Nomi</TableHead>
+                    <TableHead>Bo'lim</TableHead>
                     <TableHead>Ball</TableHead>
                     <TableHead>Muddati</TableHead>
                     <TableHead>O'chirish</TableHead>
@@ -170,6 +182,7 @@ onMounted(() => {
                     <TableRow v-for="task, index in tasks">
                         <TableCell>{{ index+1 }}</TableCell>
                         <TableCell>{{ task.name }}</TableCell>
+                        <TableCell>{{ task.position }}</TableCell>
                         <TableCell>
                             <span class="border rounded-full p-2 bg-accent/30">{{ task.point }}</span>
                         </TableCell>
@@ -180,7 +193,28 @@ onMounted(() => {
                             <span class="text-green-500" v-else-if="task.term === 'annual'">Yillik</span>
                         </TableCell>
                         <TableCell class="w-4">
-                            <Button @click="deleteTask(task)">O'chirish</Button>
+                            <ClientOnly>
+                                <Dialog>
+                                    <DialogTrigger>
+                                        <Button variant="destructive">
+                                            {{ t("delete") }}
+                                        </Button>
+                                    </DialogTrigger>
+                                    <DialogContent>
+                                        <DialogHeader>
+                                            <DialogTitle>{{ t("delete") }}</DialogTitle>
+                                        </DialogHeader>
+                                        <DialogFooter>
+                                            <DialogClose>
+                                                <Button>{{ t("close") }}</Button>
+                                            </DialogClose>
+                                            <DialogClose>
+                                                <Button variant="destructive" @click="deleteTask(task)">{{ t("delete") }}</Button>
+                                            </DialogClose>
+                                        </DialogFooter>
+                                    </DialogContent>
+                                </Dialog>
+                            </ClientOnly>
                         </TableCell>
                     </TableRow>
                 </TableBody>

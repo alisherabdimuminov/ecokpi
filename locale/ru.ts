@@ -24,6 +24,7 @@ export default function ru(key: keyof ITranslation) {
         new: "Новый",
         addNewTask: "Добавить новую задачу",
         close: "Закрытие",
+        delete: "Удалить",
 
         theme: "Тема",
         light: "Яркий",

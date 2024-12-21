@@ -24,6 +24,7 @@ export default function en(key: keyof ITranslation) {
         new: "New",
         addNewTask: "Add a new task",
         close: "Close",
+        delete: "Delete",
 
         theme: "Theme",
         light: "Light",

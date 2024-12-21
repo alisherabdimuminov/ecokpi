@@ -31,6 +31,7 @@ export interface ITranslation {
     new: string
     addNewTask: string
     close: string
+    delete: string
 
     // theme
     theme: string

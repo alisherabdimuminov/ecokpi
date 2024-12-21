@@ -43,9 +43,19 @@ export interface IEtiquettes {
 
 export interface ITask {
     uuid: string
+    position: string
     name: string
     point: number
     term: "regular" | "monthly" | "quarter" | "annual"
+}
+
+export interface ISubmit {
+    uuid: string
+    user: IUser
+    task: ITask
+    file: string
+    status: "approved" | "rejected" | "in_process" | "created"
+    created: string
 }
 
 export interface IResponse<T=string> {

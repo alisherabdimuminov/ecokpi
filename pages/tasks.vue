@@ -11,10 +11,12 @@ definePageMeta({
 });
 
 const { t } = useLang();
+const { user } = useAuth();
 
 const tasks = ref<ITask[]>([]);
 const task = ref<ITask>({
     name: "",
+    position: "",
     point: 20,
     term: "regular",
     uuid: "",
@@ -23,8 +25,11 @@ const isOpen = ref(false);
 
 
 const getTasks = async () => {
-    let response = await $fetch<IResponse<ITask[]>>(apify("admin/tasks"), {
+    let response = await $fetch<IResponse<ITask[]>>(apify("user/tasks"), {
         method: "GET",
+        headers: {
+            "Authorization": `Token ${user.value?.token}`
+        }
     });
 
     if (response.status === "success") {
@@ -35,51 +40,6 @@ const getTasks = async () => {
             description: "Adminga murojat qiling",
         });
     }
-}
-
-const addTask = async () => {
-    let response = await $fetch<IResponse<string>>(apify("admin/tasks/add"), {
-        method: "POST",
-        body: JSON.stringify({
-            "name": task.value.name,
-            "point": task.value.point,
-            "term": task.value.term,
-        })
-    });
-    if (response.status === "success") {
-        toast({
-            title: "Ajoyib",
-            description: "Vazifa qo'shildi"
-        });
-    } else {
-        toast({
-            title: "Xatolik",
-            description: "Adminga murojat qiling",
-        });
-    }
-    getTasks();
-    isOpen.value = false;
-}
-
-const deleteTask = async (task: ITask) => {
-    let response = await $fetch<IResponse>(apify("admin/tasks/delete"), {
-        method: "POST",
-        body: JSON.stringify({
-            "uuid": task.uuid
-        })
-    });
-    if (response.status === "success") {
-        toast({
-            title: "Ajoyib",
-            description: "Vazifa o'chirildi"
-        });
-    } else {
-        toast({
-            title: "Xatolik",
-            description: "Adminga murojat qiling",
-        });
-    }
-    getTasks();
 }
 
 onMounted(() => {
@@ -131,7 +91,7 @@ onMounted(() => {
                             <span class="text-green-500" v-else-if="task.term === 'annual'">Yillik</span>
                         </TableCell>
                         <TableCell class="w-4">
-                            <Button @click="deleteTask(task)">Topshirish</Button>
+                            <Button>Topshirish</Button>
                         </TableCell>
                     </TableRow>
                 </TableBody>
